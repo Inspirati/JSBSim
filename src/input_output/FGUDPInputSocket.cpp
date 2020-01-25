@@ -80,7 +80,7 @@ bool FGUDPInputSocket::Load(Element* el)
     return false;
    
   rate = atoi(el->GetAttributeValue("rate").c_str());
-  SetRate(0.5 + 1.0/(FDMExec->GetDeltaT()*rate));
+  SetRate((unsigned int)(0.5 + 1.0/(FDMExec->GetDeltaT()*rate))); // cast away warning - RobD
    
   SockPort = atoi(el->GetAttributeValue("port").c_str());
   if (SockPort == 0) {

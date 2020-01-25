@@ -1054,7 +1054,7 @@ bool FGInitialCondition::Load_v1(Element* document)
   if (document->FindElement("targetNlf"))
     SetTargetNlfIC(document->FindElementValueAsNumber("targetNlf"));
   if (document->FindElement("trim"))
-    needTrim = document->FindElementValueAsNumber("trim");
+    needTrim = (int)document->FindElementValueAsNumber("trim"); // cast away warning - RobD
 
   // Refer to Stevens and Lewis, 1.5-14a, pg. 49.
   // This is the rotation rate of the "Local" frame, expressed in the local frame.
@@ -1231,7 +1231,7 @@ bool FGInitialCondition::Load_v2(Element* document)
 
     string frame = velocity_el->GetAttributeValue("frame");
     frame = to_lower(frame);
-    FGColumnVector3 vInitVelocity = velocity_el->FindElementTripletConvertTo("FT/SEC");
+    vInitVelocity = velocity_el->FindElementTripletConvertTo("FT/SEC");
 
     if (frame == "eci") {
       FGColumnVector3 omega_cross_r = vOmegaEarth * (position.GetTec2i() * position);

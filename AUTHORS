@@ -66,3 +66,7 @@ general debugging and support
 wino@jentronics.com
 CVS access as developer (r/w)
 
+Robert Dickenson (aka, Ansuz Inspirati)
+few bugfixes, and worked on the build systems, updating the autotools scripts, and support for various new MSVC versions
+robert.dickenson@gmail.com
+GitHub mirror owner, in support of the MatrixPilot project - https://github.com/Inspirati/JSBSim

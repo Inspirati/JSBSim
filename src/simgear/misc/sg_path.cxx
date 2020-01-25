@@ -332,7 +332,7 @@ void SGPath::validate() const
 
 #if defined(SG_WINDOWS)
   struct _stat buf ;
-  bool remove_trailing = false;
+//  bool remove_trailing = false; // Unused - RobD
   std::wstring statPath(wstr());
   if ((path.length() > 1) && (path.back() == '/')) {
 	  statPath.pop_back();
@@ -346,7 +346,7 @@ void SGPath::validate() const
       std::wstring parentPath = simgear::strutils::convertUtf8ToWString(dir());
       struct _stat parentBuf;
       if (_wstat(parentPath.c_str(), &parentBuf) >= 0) {
-          _canWrite = parentBuf.st_mode & _S_IWRITE;
+          _canWrite = !!(parentBuf.st_mode & _S_IWRITE); // !! away warning - RobD
       } else {
           _canWrite = false;
       }
@@ -356,8 +356,8 @@ void SGPath::validate() const
     _isDir = ((S_IFDIR & buf.st_mode ) !=0);
     _modTime = buf.st_mtime;
     _size = buf.st_size;
-	_canRead = _S_IREAD & buf.st_mode;
-	_canWrite = _S_IWRITE & buf.st_mode;
+	_canRead = !!(_S_IREAD & buf.st_mode); // !! away warning - RobD
+	_canWrite = !!(_S_IWRITE & buf.st_mode); // !! away warning - RobD
   }
 
 #else

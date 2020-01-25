@@ -442,7 +442,7 @@ void FGMassBalance::PointMass::bind(FGPropertyManager* PropertyManager,
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-void FGMassBalance::GetMassPropertiesReport(int i)
+void FGMassBalance::GetMassPropertiesReport(int _i) // unused parameter - RobD
 {
   cout << endl << fgblue << highint 
        << "  Mass Properties Report (English units: lbf, in, slug-ft^2)"

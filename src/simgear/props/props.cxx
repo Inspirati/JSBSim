@@ -327,7 +327,7 @@ find_child (Itr begin, Itr end, int index, const PropertyList& nodes)
 {
   size_t nNodes = nodes.size();
 #if PROPS_STANDALONE
-  for (int i = 0; i < nNodes; i++) {
+  for (size_t i = 0; i < nNodes; i++) { // change int to size_t in order to eliminate warning - RobD
     SGPropertyNode * node = nodes[i];
     if (node->getIndex() == index && compare_strings(node->getName(), begin))
       return i;
@@ -1431,7 +1431,7 @@ SGPropertyNode::getFloatValue () const
     return float(get_double());
   case props::STRING:
   case props::UNSPECIFIED:
-    return atof(get_string());
+    return (float)atof(get_string()); // cast away warning - RobD
   case props::NONE:
   default:
     return SGRawValue<float>::DefaultValue();
@@ -1690,7 +1690,7 @@ SGPropertyNode::setFloatValue (float value)
 bool
 SGPropertyNode::setDoubleValue (double value)
 {
-				// Shortcut for common case
+  // Shortcut for common case
   if (_attr == (READ|WRITE) && _type == props::DOUBLE)
     return set_double(value);
 
@@ -1741,7 +1741,7 @@ SGPropertyNode::setDoubleValue (double value)
 bool
 SGPropertyNode::setStringValue (const char * value)
 {
-				// Shortcut for common case
+  // Shortcut for common case
   if (_attr == (READ|WRITE) && _type == props::STRING)
     return set_string(value);
 
@@ -1767,7 +1767,7 @@ SGPropertyNode::setStringValue (const char * value)
     result = set_long(strtol(value, 0, 0));
     break;
   case props::FLOAT:
-    result = set_float(atof(value));
+    result = set_float((float)atof(value)); // cast away warning - RobD
     break;
   case props::DOUBLE:
     result = set_double(strtod(value, 0));
@@ -1819,7 +1819,7 @@ SGPropertyNode::setUnspecifiedValue (const char * value)
     result = set_long(strtol(value, 0, 0));
     break;
   case props::FLOAT:
-    result = set_float(atof(value));
+    result = set_float((float)atof(value)); // cast away warning - RobD
     break;
   case props::DOUBLE:
     result = set_double(strtod(value, 0));

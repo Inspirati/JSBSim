@@ -9,6 +9,7 @@ Contents
 3.2) Windows MinGW
 3.3) Windows MSVC 2010
 3.4) Windows MSVC 2011
+3.5) Windows MSVC 2017
 4) Contact
 
 
@@ -107,7 +108,7 @@ Run the following commands :
 
 $ mkdir build_linux
 $ cd build_linux
-$ cmake .. [-DBUILD_SHARED_LIBS]
+$ cmake .. [-DBUILD_SHARED_LIBS=ON]
 $ make
 $ make install [DESTDIR=_install]
 
@@ -123,7 +124,7 @@ Tested with MinGW of CodeBlocks 12.11.
 $ mkdir build_mingw
 $ cd build_mingw
 $ "c:\Program Files\CodeBlocks\MinGW\mingwvars.bat"
-$ cmake -G "MinGW Makefiles" ..  [-DBUILD_SHARED_LIBS]
+$ cmake -G "MinGW Makefiles" ..  [-DBUILD_SHARED_LIBS=ON]
 $ mingw32-make
 $ mingw32-make install [DESTDIR=_install]
 
@@ -136,7 +137,7 @@ Tested with MSVC 2010 express SP1.
 $ mkdir build_msvc_10
 $ cd build_msvc_10
 $ "c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\vcvars32.bat"
-$ cmake -G "Visual Studio 10" ..  [-DBUILD_SHARED_LIBS]
+$ cmake -G "Visual Studio 10" ..  [-DBUILD_SHARED_LIBS=ON]
 $ msbuild jsbsim.sln
 
 You can also open jsbsim.sln with visual studio IDE.
@@ -150,10 +151,20 @@ Tested with MSVC 2012 express.
 $ mkdir build_msvc_11
 $ cd build_msvc_11
 $ "c:\Program Files\Microsoft Visual Studio 11.0\VC\bin\vcvars32.bat"
-$ cmake -G "Visual Studio 11" ..  [-DBUILD_SHARED_LIBS]
+$ cmake -G "Visual Studio 11" ..  [-DBUILD_SHARED_LIBS=ON]
 $ msbuild jsbsim.sln
 
 You can also open jsbsim.sln with visual studio IDE.
+
+
+3.5) Windows MSVC 2017
+----------------------
+
+Tested with Microsoft Visual Studio Enterprise 2017. (should also work with Community edition)
+
+$ mkdir build_msvc_17
+$ cd build_msvc_17
+TODO: RobD
 
 
 4) Contact

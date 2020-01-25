@@ -489,7 +489,7 @@ int real_main(int argc, char* argv[])
 
   frame_duration = FDMExec->GetDeltaT();
   if (realtime) sleep_nseconds = (long)(frame_duration*1e9);
-  else          sleep_nseconds = (sleep_period )*1e9;           // 0.01 seconds
+  else          sleep_nseconds = (long)((sleep_period)*1e9);           // 0.01 seconds // cast away warning - RobD
 
   tzset(); 
   current_seconds = initial_seconds = getcurrentseconds();

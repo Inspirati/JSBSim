@@ -145,7 +145,7 @@ bool FGFCS::InitModel(void)
   }
 
   // Reset the channels components.
-  for (unsigned int i=0; i<SystemChannels.size(); i++) SystemChannels[i]->Reset();
+  for (i=0; i<SystemChannels.size(); i++) SystemChannels[i]->Reset();
 
   return true;
 }
@@ -508,7 +508,7 @@ bool FGFCS::Load(Element* document)
     
     int Rate = 0;
     if (!channel_element->GetAttributeValue("execrate").empty())
-      Rate = channel_element->GetAttributeValueAsNumber("execrate");
+      Rate = (int)channel_element->GetAttributeValueAsNumber("execrate"); // cast away warning - RobD
 
     if (sOnOffProperty.length() > 0) {
       FGPropertyNode* OnOffPropertyNode = PropertyManager->GetNode(sOnOffProperty);

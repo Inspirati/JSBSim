@@ -560,7 +560,7 @@ double FGFunction::GetValue(void) const
       } else if (temp >= Parameters[sz-2]->GetValue()) {
         temp = Parameters[sz-1]->GetValue();
       } else {
-        for (unsigned int i=1; i<=sz-4; i+=2) {
+        for (i=1; i<=sz-4; i+=2) {
           if (temp < Parameters[i+2]->GetValue()) {
             double factor = (temp - Parameters[i]->GetValue()) /
                             (Parameters[i+2]->GetValue() - Parameters[i]->GetValue());

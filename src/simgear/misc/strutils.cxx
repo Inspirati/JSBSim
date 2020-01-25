@@ -374,12 +374,22 @@ namespace simgear {
 
     int compare_versions(const string& v1, const string& v2, int maxComponents)
     {
+        int lastPart;
+
         vector<string> v1parts(split(v1, "."));
         vector<string> v2parts(split(v2, "."));
 
-        int lastPart = std::min(v1parts.size(), v2parts.size());
+#if defined(_MSC_VER) // && _MSC_VER < 1900
+        lastPart = min(v1parts.size(), v2parts.size());
+#else
+        lastPart = std::min(v1parts.size(), v2parts.size());
+#endif
         if (maxComponents > 0) {
+#if defined(_MSC_VER) // && _MSC_VER < 1900
+            lastPart = min(lastPart, maxComponents);
+#else
             lastPart = std::min(lastPart, maxComponents);
+#endif
         }
 
         for (int part=0; part < lastPart; ++part) {

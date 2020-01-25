@@ -1,7 +1,9 @@
 /* Copyright (c) 1998, 1999, 2000 Thai Open Source Software Center Ltd
    See the file COPYING for copying permission.
 */
+#ifndef NDEBUG
 #define NDEBUG
+#endif // NDEBUG
 
 #include <stddef.h>
 #include <string.h>                     /* memset(), memcpy() */
@@ -1640,7 +1642,7 @@ XML_GetBuffer(XML_Parser parser, int len)
       bufferLim = newBuf + bufferSize;
 #ifdef XML_CONTEXT_BYTES
       if (bufferPtr) {
-        int keep = bufferPtr - buffer;
+        keep = bufferPtr - buffer;
         if (keep > XML_CONTEXT_BYTES)
           keep = XML_CONTEXT_BYTES;
         memcpy(newBuf, &bufferPtr[-keep], bufferEnd - bufferPtr + keep);
@@ -4214,11 +4216,11 @@ doProlog(XML_Parser parser,
             return XML_ERROR_NO_MEMORY;
           groupConnector = temp;
           if (dtd->scaffIndex) {
-            int *temp = (int *)REALLOC(dtd->scaffIndex,
+            int *tmp = (int *)REALLOC(dtd->scaffIndex,
                           groupSize * sizeof(int));
-            if (temp == NULL)
+            if (tmp == NULL)
               return XML_ERROR_NO_MEMORY;
-            dtd->scaffIndex = temp;
+            dtd->scaffIndex = tmp;
           }
         }
         else {

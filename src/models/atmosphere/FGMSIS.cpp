@@ -1064,8 +1064,8 @@ void MSIS::gtd7(struct nrlmsise_input *input, struct nrlmsise_flags *flags,
   struct nrlmsise_output soutput;
   int i;
 
-  for (int i=0; i<9; i++) soutput.d[i] = 0.0;
-  for (int i=0; i<2; i++) soutput.t[i] = 0.0;
+  for (i=0; i<9; i++) soutput.d[i] = 0.0;
+  for (i=0; i<2; i++) soutput.t[i] = 0.0;
 
   tselec(flags);
 
